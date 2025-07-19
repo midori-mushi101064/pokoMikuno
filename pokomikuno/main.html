@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="icon" href="icon.png" type="image/png">
+    <meta charset="UTF-8"> <!-- 文字エンコードの指定（文字化けの予防）-->
+    <meta name="description" content="ポコミクノブロック崩しかけるローグライク"> <!-- ページの説明文を検索結果へ反映させる -->
+
+    <meta property="og:title" content="ポコミクノ" />
+    <meta property="og:description" content="ブロック崩し×ローグライク" />
+    <meta property="og:image" content="https://midori-mushi101064.github.io/games/pokomikuno/logo.png" />
+    <meta property="og:url" content="https://midori-mushi101064.github.io/games/pokomikuno/main.html" />
+    <meta property="og:type" content="website" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ポコミクノ</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #landscapeContent {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            background: rgb(209, 226, 231);
+            text-align: center;
+            padding-top: 40vh;
+            font-size: 24px;
+        }
+
+        #rotateWarning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgb(190, 136, 136);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+
+    <div id="landscapeContent">
+    </div>
+    <div id="rotateWarning">
+        画面を横向きにしてね！
+    </div>
+    <script src="Library\canvas.js"></script>
+    <script src="Library\sound.js"></script>
+    <script src="Library\image.js"></script>
+    <script src="Library\CS.js"></script>
+    <script src="Library\touch.js"></script>
+    <script src="Library\Key.js"></script>
+    <script src="main.js"></script>
+    <script src="poko.js"></script>
+    <script src="mikuno.js"></script>
+    <script src="any.js"></script>
+    <script src="ui.js"></script>
+
+</body>
+
+</html>
