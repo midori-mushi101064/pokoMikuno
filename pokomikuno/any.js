@@ -102,7 +102,7 @@ function paddleStep() {
             angle = Math.floor(angle / 45) * 45;
         }
         //ポコを発射（長押しなら連射）
-        if ((touchUp || (touchDown && clickTime >= 80)) && !checkClick(300, 1000, 400, 400)) {
+        if ((touchUp || (touchDown && clickTime >= 80)) && !checkClick(300, 450, 500, 300)) {
             shot();
         }
     }

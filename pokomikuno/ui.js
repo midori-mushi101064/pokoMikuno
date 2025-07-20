@@ -60,7 +60,7 @@ function uiRender() {
     imgC('assets/images/time.png', 120, 1120, 160, 180);
     imgCR(pokoList[nextPoko].src, 300, 820, 300, 300, -90);
     const t = time % 1 === 0 ? time.toFixed(1) : time.toString();
-    text(230, 1100, String(t), 150, 'rgb(102, 147, 255)', 'HG創英角ﾎﾟｯﾌﾟ体', 'left');
+    text(230, 1100, String(t), 150, 'rgb(102, 147, 255)', 'Uzura', 'left');
     if (stage !== 'title') {
         modeChangeButton();
         moneyBag();
@@ -87,9 +87,10 @@ function modeChangeButton() {
     const i = (touchMode == 'move') ? 'angle' : 'move';
     const n = (touchMode == 'move') ? 1 : -1;
     const l = 300;
-    imgC(`assets/images/${i}No.png`, l - 30 * n, 450 - 20 * n, 280, 280);
-    imgC(`assets/images/${touchMode}.png`, l + 30 * n, 450 + 20 * n, 280, 280);
-    if (touchUp && checkClick(l, 450, 300, 400) || keyJustPress('c')) {
+    imgC('assets/images/touchMode.png', l, 450, 500, 300)
+    imgC(`assets/images/${i}No.png`, l - 30 * n, 450 - 20 * n, 180, 180);
+    imgC(`assets/images/${touchMode}.png`, l + 30 * n, 450 + 20 * n, 180, 180);
+    if (touchUp && checkClick(l, 450, 500, 300) || keyJustPress('c')) {
         touchMode = (touchMode == 'move') ? 'angle' : 'move';
         sound("assets/sounds/changeMode.mp3", 'start');
     }
@@ -97,7 +98,7 @@ function modeChangeButton() {
 
 function moneyBag() {
     imgC('assets/images/moneyBag.png', csX(-850), csY(500), 150, 200);
-    text(450, csY(500), String(money), 140 / (((String(money).length - 3) * 0.2) + 1), 'black', 'HG創英角ﾎﾟｯﾌﾟ体', 'right');
+    text(450, csY(500), String(money), 140 / (((String(money).length - 3) * 0.2) + 1), 'black', 'Uzura', 'right');
 }
 
 function arrow() {
@@ -157,16 +158,16 @@ function titleButton() {
         imgC('assets/images/button/home.png', csX(-780), csY(480), 220, 220);
 
         imgC('assets/images/moneyBag.png', csX(-850), csY(200), 200, 250);
-        text(csX(-750), csY(200), String(100 + mode.date[0]), 150, 'black', 'HG創英角ﾎﾟｯﾌﾟ体', 'left');
+        text(csX(-750), csY(200), String(100 + mode.date[0]), 150, 'black', 'Uzura', 'left');
 
         imgCR(pokoList[0].src, csX(-850), csY(-50), 180, 180, -90);
         imgC('assets/images/time2.png', csX(-780), csY(-80), 100, 120);
-        text(csX(-750), csY(-30), String(12 + mode.date[3]) + '秒', 150, 'black', 'HG創英角ﾎﾟｯﾌﾟ体', 'left');
+        text(csX(-750), csY(-30), String(12 + mode.date[3]) + '秒', 150, 'black', 'Uzura', 'left');
 
 
         imgCR(mikunoList[0].src, csX(500), csY(200), 160, 160, -90);
         imgC('assets/images/time2.png', csX(580), csY(170), 100, 120);
-        text(csX(650), csY(220), String(5 + mode.date[1]) + '秒', 150, 'black', 'HG創英角ﾎﾟｯﾌﾟ体', 'left');
+        text(csX(650), csY(220), String(5 + mode.date[1]) + '秒', 150, 'black', 'Uzura', 'left');
 
         if (!isStop) {
             if (checkClick(csX(-600), csY(), 600, screenSizeH) && touchUp) {
@@ -201,13 +202,13 @@ function titleButton() {
         }
         imgCR(`assets/images/poko/${mode.img}.png`, csX(), csY(150) + Math.sin(sin[0]) * 30, 400, 400, Math.sin(sin[1]) * 45 - 90);
         imgC(`assets/images/dess.png`, csX(-80), 120, 150, 200);
-        text(csX(50), 100, String(page + 1), 180, 'rgb(236, 124, 59)', 'HG創英角ﾎﾟｯﾌﾟ体', 'left');
-        text(csX(-300), csY(-150) + Math.sin(sin[2]) * 10, '持ちポコ', 70, 'black', 'HG創英角ﾎﾟｯﾌﾟ体', 'center');
+        text(csX(50), 100, String(page + 1), 180, 'rgb(255, 158, 102)', 'Uzura', 'left');
+        text(csX(-300), csY(-150) + Math.sin(sin[2]) * 10, '持ちポコ', 70, 'black', 'Uzura', 'center');
         for (let i = 0; i < mode.backPack.length; i++) {
             const n = mode.backPack[i];
             imgCR(pokoList[n].src, csX(-80) + 100 * i, csY(-150) + Math.sin(sin[2]) * 10, 80, 80, Math.sin(sin[3]) * 10 - 90);
         }
-        text(csX(), csY(-250) + Math.sin(sin[2]) * 10, mode.text, 70, 'black', 'HG創英角ﾎﾟｯﾌﾟ体', 'center');
+        text(csX(), csY(-250) + Math.sin(sin[2]) * 10, mode.text, 70, 'black', 'Uzura', 'center');
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -127,7 +127,7 @@ function Render() {
         ctx.fillRect(0, 0, screenSizeW, screenSizeH);
         ctx.restore();
     }
-    damageAreaRender();
+    //damageAreaRender();
 }
 /*--------------------------------------------------------------------------*/
 

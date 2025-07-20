@@ -74,7 +74,8 @@ function waitForTouchUp() {
             } else {
                 requestAnimationFrame(check); // 次のフレームでまた確認
             }
-            text(csX(), csY(), 'クリックしてスタート', 100, "#9ef0a6", 'HG創英角ﾎﾟｯﾌﾟ体', 'center');
+            clear();
+            text(csX(), csY(), 'クリックしてスタート', 100, "#9ef0a6", 'Uzura', 'center');
         };
         check();
     });
