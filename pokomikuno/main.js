@@ -14,6 +14,9 @@ window.onload = async function () {
     clear();
     //その他の初期化
     reset();
+    //
+    text(csX(), csY(), '読み込み中', 100, "#f1dc1cff", 'Uzura', 'center');
+    await document.fonts.load('64px "Uzura"');
     //クリックまで待つ
     await waitForTouchUp();
     bgm = 'title';
