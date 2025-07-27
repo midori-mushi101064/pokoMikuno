@@ -83,18 +83,45 @@ function uiRender() {
     }
 }
 
+let modeChenge = 0;
+let modeChangeX = 0;
+let modeChangeA = 0;
+
 function modeChangeButton() {
-    const i = (touchMode == 'move') ? 'angle' : 'move';
-    const n = (touchMode == 'move') ? 1 : -1;
     const l = 300;
-    imgC('assets/images/touchMode.png', l, 450, 500, 300)
-    imgC(`assets/images/${i}No.png`, l - 30 * n, 450 - 20 * n, 180, 180);
-    imgC(`assets/images/${touchMode}.png`, l + 30 * n, 450 + 20 * n, 180, 180);
-    if (touchUp && checkClick(l, 450, 500, 300) || keyJustPress('c')) {
-        touchMode = (touchMode == 'move') ? 'angle' : 'move';
-        sound("assets/sounds/changeMode.mp3", 'start');
+    imgC('assets/images/touchMode.png', l, 450, 500, 300);
+    if (modeChenge <= 0) {
+        if (touchMode == 'move') {
+            imgC(`assets/images/move.png`, l - 100, 450, 250, 250);
+        }
+        else {
+            imgC(`assets/images/angle.png`, l + 100, 450, 250, 250);
+        }
+        if (touchUp && checkClick(l, 450, 500, 300) || keyJustPress('c')) {
+            touchMode = (touchMode == 'move') ? 'angle' : 'move';
+            modeChenge = 20;
+            modeChangeX = l;
+            modeChangeA = 0;
+            sound("assets/sounds/changeMode.mp3", 'start');
+        }
+    }
+    else {
+        if (touchMode == 'move') {
+            imgCR(`assets/images/move.png`, modeChangeX + 100, 450, 250, 250, modeChangeA);
+            imgCR(`assets/images/angle.png`, modeChangeX + 100, 450, 250, 250, modeChangeA, modeChenge / 20);
+            modeChangeX += (l - 200 - modeChangeX) * 0.2;
+            modeChangeA += (-360 - modeChangeA) * 0.2;
+        }
+        else {
+            imgCR(`assets/images/angle.png`, modeChangeX - 100, 450, 250, 250, modeChangeA);
+            imgCR(`assets/images/move.png`, modeChangeX - 100, 450, 250, 250, modeChangeA, modeChenge / 20);
+            modeChangeX += (l + 200 - modeChangeX) * 0.2;
+            modeChangeA += (360 - modeChangeA) * 0.2;
+        }
+        modeChenge--;
     }
 }
+
 
 function moneyBag() {
     imgC('assets/images/moneyBag.png', csX(-850), csY(500), 150, 200);
@@ -125,8 +152,8 @@ const modeList = [
     { img: 'ポコ', backPack: [1, 0, 0, 0, 0], text: 'ポコ +1個', date: [0, 0, 0, 0] },
     { img: '90度ポコ', backPack: [1, 0, 0, 0, 0], text: '開始時のお金 -10', date: [-10, 0, 0, 0] },
     { img: 'イノシシ', backPack: [1, 0, 0, 0, 0], text: 'ミクノの移動間隔 -1秒', date: [-10, -1, 0, 0] },
-    { img: 'ボム', backPack: [1, 0, 0, 0, 0], text: 'ミクノの攻撃力 +5', date: [-10, -1, 5, 0] },
-    { img: 'ブーメラン', backPack: [1, 0, 0, 0, 0], text: 'ポコのチャージ時間 +2秒', date: [-10, -1, 5, 2] },
+    { img: 'ボム', backPack: [1, 0, 0, 0, 0], text: 'ミクノの攻撃力 +1', date: [-10, -1, 1, 0] },
+    { img: 'ブーメラン', backPack: [1, 0, 0, 0, 0], text: 'ポコのチャージ時間 +2秒', date: [-10, -1, 1, 2] },
 ]
 
 let sin;

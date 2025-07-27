@@ -80,7 +80,7 @@ function imgR(img, x, y, w, h, r) {
 }
 
 // 中心を原点として回転できる画像を描画
-function imgCR(img, x, y, w, h, r) {
+function imgCR(img, x, y, w, h, r, alpha = 1) {
     // X座標とY座標を数値に変換
     x = Number(x);
     y = Number(y);
@@ -98,6 +98,7 @@ function imgCR(img, x, y, w, h, r) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(r * Math.PI / 180);
+    ctx.globalAlpha = alpha;  // ★ 透明度 (0.0〜1.0)
     ctx.drawImage(images[img], a, b, w, h);
     ctx.restore();
 }

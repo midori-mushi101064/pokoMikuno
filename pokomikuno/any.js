@@ -76,34 +76,36 @@ function paddleStep() {
     const s = p[0].size + pokoSize;
     //ゲーム中の処理
     if (stage !== 'title') {
-        //移動モード
-        if (touchMode == 'move') {
-            paddleX += (touchX - paddleX) * paddleSpeed;
-        }
-        //角度変更モード
-        else {
-            const a = getAngle(paddleX, paddleY - s / 2, touchX, touchY);
+        if (!checkClick(300, 450, 500, 300)) {
+            //移動モード
+            if (touchMode == 'move') {
+                paddleX += (touchX - paddleX) * paddleSpeed;
+            }
+            //角度変更モード
+            else {
+                const a = getAngle(paddleX, paddleY - s / 2, touchX, touchY);
+                const n = (chargePoko.length == 0) ? 0 : chargePoko[0].Num;
+                if (n == 2) {
+                    let diff = a;
+                    while (diff > 180) diff -= 360;
+                    while (diff < -180) diff += 360;
+                    angle = diff;
+                }
+                else {
+                    let diff = a - angle;
+                    while (diff > 180) diff -= 360;
+                    while (diff < -180) diff += 360;
+                    angle += (diff) * arrowSpeed;
+                }
+            }
             const n = (chargePoko.length == 0) ? 0 : chargePoko[0].Num;
             if (n == 2) {
-                let diff = a;
-                while (diff > 180) diff -= 360;
-                while (diff < -180) diff += 360;
-                angle = diff;
+                angle = Math.floor(angle / 45) * 45;
             }
-            else {
-                let diff = a - angle;
-                while (diff > 180) diff -= 360;
-                while (diff < -180) diff += 360;
-                angle += (diff) * arrowSpeed;
+            //ポコを発射（長押しなら連射）
+            if ((touchUp || (touchDown && clickTime >= 80))) {
+                shot();
             }
-        }
-        const n = (chargePoko.length == 0) ? 0 : chargePoko[0].Num;
-        if (n == 2) {
-            angle = Math.floor(angle / 45) * 45;
-        }
-        //ポコを発射（長押しなら連射）
-        if ((touchUp || (touchDown && clickTime >= 80)) && !checkClick(300, 450, 500, 300)) {
-            shot();
         }
     }
     //タイトル画面の処理
