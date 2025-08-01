@@ -89,15 +89,15 @@ let modeChangeA = 0;
 
 function modeChangeButton() {
     const l = 300;
-    imgC('assets/images/touchMode.png', l, 450, 500, 300);
     if (modeChenge <= 0) {
+        imgC('assets/images/touchMode.png', l, 450, 500, 300);
         if (touchMode == 'move') {
             imgC(`assets/images/move.png`, l - 100, 450, 250, 250);
         }
         else {
             imgC(`assets/images/angle.png`, l + 100, 450, 250, 250);
         }
-        if (touchUp && checkClick(l, 450, 500, 300) || keyJustPress('c')) {
+        if (touchUp && checkClick(l, 450, 500, 300) || keyPress('c')) {
             touchMode = (touchMode == 'move') ? 'angle' : 'move';
             modeChenge = 20;
             modeChangeX = l;
@@ -106,17 +106,17 @@ function modeChangeButton() {
         }
     }
     else {
+        const s = 0.95;
+        imgC('assets/images/touchMode.png', l, 450, 500 * s, 300 * s);
         if (touchMode == 'move') {
-            imgCR(`assets/images/move.png`, modeChangeX + 100, 450, 250, 250, modeChangeA);
-            imgCR(`assets/images/angle.png`, modeChangeX + 100, 450, 250, 250, modeChangeA, modeChenge / 20);
+            imgCR(`assets/images/move.png`, modeChangeX + 100, 450, 250 * s, 250 * s, modeChangeA);
             modeChangeX += (l - 200 - modeChangeX) * 0.2;
-            modeChangeA += (-360 - modeChangeA) * 0.2;
+            modeChangeA += (-180 - modeChangeA) * 0.2;
         }
         else {
-            imgCR(`assets/images/angle.png`, modeChangeX - 100, 450, 250, 250, modeChangeA);
-            imgCR(`assets/images/move.png`, modeChangeX - 100, 450, 250, 250, modeChangeA, modeChenge / 20);
+            imgCR(`assets/images/angle.png`, modeChangeX - 100, 450, 250 * s, 250 * s, modeChangeA - 180);
             modeChangeX += (l + 200 - modeChangeX) * 0.2;
-            modeChangeA += (360 - modeChangeA) * 0.2;
+            modeChangeA += (180 - modeChangeA) * 0.2;
         }
         modeChenge--;
     }
@@ -160,6 +160,13 @@ let sin;
 
 function titleButton() {
     if (titleMode == 'home') {
+        // 四角の描画（位置 x, y, 幅, 高さ, 丸みの半径）
+        drawRoundedRect(csX(-780), csY(480), 250, 250, 20, true, "white", true, "rgb(160, 228, 255)", 20);
+        imgC('assets/images/button/zoom.png', csX(-780), csY(480), 150, 150);
+        if (checkClick(csX(-780), csY(480), 400, 400) && touchUp) {
+            Fullscreen();
+            sound('assets/sounds/arrow.mp3', 'start');
+        }
         soundVolume = 0.5;
         imgC('assets/images/button/start.png', csX(), csY(), 480, 150);
         if (checkClick(csX(), csY(), 480, 150) && touchUp) {

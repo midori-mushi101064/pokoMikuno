@@ -16,10 +16,19 @@ class Mikuno {
     }
     //ミクノを描画
     render() {
+        //キャンバスを取得
+        const ctx = canvas.getContext('2d');
+        //線を描く
+        ctx.save();
+        ctx.fillStyle = `rgba(255, 255, 255, ${1 + this.alphaChange})`;
+        ctx.beginPath();
+        ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
+        ctx.restore();
         let alpha = (this.removeFlag) ? 1 : (this.hp / this.hpMax);
         alpha *= (this.alphaChange + 1);
         if (this.alphaChange == 0) alpha += 0.1;
         if (alpha < 0) alpha = 0;
+
         imgC(mikunoList[this.Num].src, this.x, this.y, this.w, this.h, alpha);
     }
     //ミクノを消去
@@ -91,7 +100,7 @@ function mikunoStep() {
         const m = stageMikuno[i];
         if (!m.removeFlag) {
             if (m.Num == 3) {
-                if (m.hp !== m.hpMax && m.alphaChange > -0.9) m.alphaChange -= 0.02;
+                if (m.hp !== m.hpMax && m.alphaChange > -0.95) m.alphaChange -= 0.02;
             }
             if (move > 0) {
                 m.y += move;

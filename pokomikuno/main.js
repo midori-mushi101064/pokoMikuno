@@ -15,6 +15,9 @@ window.onload = async function () {
     //その他の初期化
     reset();
     //
+    Render();
+    clear();
+    //
     text(csX(), csY(), '読み込み中', 100, "#f1dc1cff", 'Uzura', 'center');
     await document.fonts.load('64px "Uzura"');
     //クリックまで待つ
